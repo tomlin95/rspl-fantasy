@@ -1,0 +1,99 @@
+{%extends "webapp/header.html" %}
+ {% block content %}
+ 
+
+
+<style>
+     img {
+    width: 160%;
+    height: 500px;
+}
+
+.div1{
+   border: solid black 2px;
+    overflow: scroll;
+    height: 500px;
+    margin-left:auto; 
+    margin-right:0;
+     width: 40%;
+ 
+}
+.div2 {
+     border: solid black 2px;
+    
+    height: 500px;
+    margin-left:50px; 
+    margin-right:50px;
+     width: 25%;
+}
+.div3{
+   border: solid black 2px;
+    overflow: scroll;
+      
+    height: 450px;
+}
+table {
+    counter-reset: rowNumber;
+}
+
+table tr:not(:first-child) {
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+    content: counter(rowNumber) ;
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+</style>
+
+
+ {% load bootstrap %}
+ {% csrf_token %}
+
+
+<h5 align="center">Transfer In Player</h5>
+
+<div align="center">
+    <p>Please select the person who you would like to tranfer in</p>
+    
+    <p>Balance: {{balance}}</p>
+    <p>Transfered Out: {{transfered_player}}</p>
+</div>
+
+<div  style="max-width: 900px; margin: 0 auto;">
+      <form action= "/team/player/in" method="post">
+    
+  {% csrf_token %}
+ <input type=hidden name =transfered_player_id value = {{transfered_player_id}}>
+<input type=hidden name =transfered_player_price value = {{transfered_player_price}}>
+<input type=hidden name =transfered_player value = {{transfered_player}}>
+<input type=hidden name =user_id value = {{user_id}}>
+ <table class="table" >
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Name</th>
+      <th>League Team</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for player in all_players %}
+       
+    <tr>
+      <th scope="row">{{ player.position }}</th>
+      <td>{{player.name}}</td>
+      <td>{{player.league_team}}</td>
+      <td>{{player.price}} </td>
+       
+      <td> <button type="submit" name="player_id" value = "{{player.id}}">Select</button></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</form>
+    
+</div>
+ {% endblock %}	
+  

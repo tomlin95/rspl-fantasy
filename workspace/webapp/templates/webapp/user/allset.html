@@ -1,0 +1,18 @@
+{%extends "webapp/header.html" %}
+ {% block content %}
+ <h1>Ok Now your all set</h1>
+
+<form action= "/user/home/" method="post">
+<input type= hidden name=user_id value={{user_id}}>
+
+
+  {% csrf_token %}
+    
+  {% load bootstrap %}
+
+<div style="width: 10%;" />
+
+ <button type=submit name='btnform1'>Go to home page</button>
+</div>
+</form>
+{% endblock %}	

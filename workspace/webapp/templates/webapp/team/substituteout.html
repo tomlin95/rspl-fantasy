@@ -1,0 +1,42 @@
+{%extends "webapp/header.html" %}
+ {% block content %}
+
+ <form action= "/team/player/substitute/out" method="post">
+   <input type=hidden name =user_id value = {{user_id}}>
+    {% csrf_token %}
+    <div  style="margin: 0 auto; max-width: 600px;">
+        {% csrf_token %}
+        <p style="text-align:center; font-size: 20px;">Your Players</p>
+        <p>Select the player you want to substitute</p>
+        <table class="table" >
+             <thead>
+              <tr>
+                <th>Position</th>
+                <th>Name</th>
+                 <th></th>
+              </tr>
+            </thead>
+            <tbody>
+               {% for player in players_list %}
+               <tr>
+                 <td scope="row">{{ player.position }}</td>
+                 <td>{{player.name}}</td>
+                 <td>
+                      <div class="radio">
+                         <label><input type="radio" name="player_id" value = "{{player.id}}"></label>
+                     </div>
+                </td>
+               </tr>
+               {% endfor %}
+            </tbody>
+
+        </table>
+          
+     </div>
+     <div style="text-align: center;">
+         <button type="submit" name="submit" class ="btn-warning" value = "" >Submit</button>
+     </div>
+ 
+ </form>
+ {% endblock %}	
+  

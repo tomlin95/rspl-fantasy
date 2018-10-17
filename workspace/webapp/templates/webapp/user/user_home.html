@@ -1,0 +1,209 @@
+{%extends "webapp/header.html" %}
+ {% block content %}
+  {% load bootstrap %}
+
+<div class = "row">
+    <div style = "margin: 0 25px ;border: solid thin black;width: 70%; " >
+      <h4> Your Profile</h4>
+   
+      <div style = "margin-left: auto;	margin-right: auto;text-align: center; vertical-align:middle; " >
+       <h2>{{team.name}}</h2>
+        {%if team.formation == 1%}
+        
+        
+             <img class="img-responsive"  width ="700" height="400" src="/static/webapp/formation1.jpeg" />
+       {% else %}
+            {%if team.formation == 2%}
+              <img class="img-responsive"  width ="700" height="400" src="/static/webapp/formation2.jpeg" />
+             {% else %}
+               <img class="img-responsive"  width ="700" height="400" src="/static/webapp/formation3.jpeg" />
+                
+            
+              {% endif %}
+            
+       {% endif %}
+       <p>Formation {{formation}}</p>
+     </div>
+      
+      <div  style = "margin: 0 150px ;border: solid thin red;width: 70%; ">
+        <p style = "font-size: 20px;">Weekly Score: {{user.weekly_score}} &nbsp&nbsp
+            Total Score: {{user.total_score}}   &nbsp&nbsp
+            Position Rank: {{rank}}   &nbsp&nbsp
+            Balance: {{user.balance}}</p>
+      </div>
+      <div style = "margin: 0 150px ;border: solid thin red;width: 70%; ">
+           <p style="font-size: 20px;"><b>Team Members: </b> </p>
+              <table class="table ">
+              <thead>
+    
+                 <tr>
+            
+                  <th>Position</th>
+                  <th>Name </th>
+                  <th>Player Total Score</th>
+                </tr>
+              </thead>
+              <tbody>
+   
+            {% for player in players_list %}
+       
+            <tr>
+              <td scope="row">
+                 {% if player.position == 'D' %}
+                       Defender
+                    {%elif player.position == 'S'%}
+                    Striker
+                    {%elif player.position == 'M' %}
+                    Mid Fielder 
+                    {%else%}
+                    Goal Keeper 
+                    {%endif%}
+                    </td>
+              <td>{{player.name}} </td>
+              <td >{{player.score}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+       
+     <div style = "margin: 0 150px ;border: solid thin red;width: 70%; ">
+           <p style="font-size: 20px;"><b>Bench Members: </b> </p>
+              <table class="table ">
+              <thead>
+    
+                 <tr>
+            
+                  <th>Position</th>
+                  <th>Name </th>
+                  <th>Player Total Score</th>
+                </tr>
+              </thead>
+              <tbody>
+   
+            {% for player in benchplayers_list %}
+       
+            <tr>
+              <td scope="row">
+                 {% if player.position == 'D' %}
+                       Defender
+                    {%elif player.position == 'S'%}
+                    Striker
+                    {%elif player.position == 'M' %}
+                    Mid Fielder 
+                    {%else%}
+                    Goal Keeper 
+                    {%endif%}
+                    </td>
+              <td>{{player.name}} </td>
+              <td >{{player.score}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div>
+       
+    </div>
+    
+      <div class = "row" style = "margin: 20px auto ;padding: 0 40px;width: 40%;   ">
+       
+        <form action= "/team/player/transfer/" method="post">
+           <input type=hidden name =user_id value = "{{user.id}}">
+              {% csrf_token %}
+              {%if delta == 0 %}
+                <button type="submit" value = "{{user.id}}" class="btn btn-primary disabled" > Transfer Players</button>
+
+              {%else%}
+                  <button type="submit" value = "{{user.id}}" class="btn btn-primary " > Transfer Players</button>
+              
+              {%endif%}
+        </form> &nbsp &nbsp
+       <form action= "/team/player/substitute/" method="post">
+           <input type=hidden name =user_id value = "{{user.id}}">
+              {% csrf_token %}
+              {%if delta == 0 %}
+                <button type="submit" value = "{{user.id}}" class="btn btn-primary disable">Substitute Players</button>
+                {%else%}
+                 <button type="submit" value = "{{user.id}}" class="btn btn-primary">Substitute Players</button>
+
+                {%endif%}
+        </form>
+      </div>
+      
+    </div>
+    <div style = "border: solid thin black; width: 25%;">
+        <h4 style="background-color:red;">Match Information</h4>
+      
+        <p style = "text-align: center; margin: 0 auto; "><h7 >Upcoming Fixtures</h7></p>
+        Time until next match:
+        <p id="demo" style="colour: red"></p>
+        <p>
+           <center><p style = "font-size: 8pt;background-color:red;">Saturday 20 May</p>
+           Harbour View FC vs August Town  FC
+           <p style = "font-size: 8pt">Harbour View Stadium</p><br>
+           Arnett Gardens FC  vs Tivoli Gardens  FC
+           <p style = "font-size: 8pt">Tony Spaulding Sports Complex</p><br>
+           UWI Mona FC  vs Humble Lions FC
+           <p style = "font-size: 8pt">UWI Mona Bowl</p><br>
+           <p style = "font-size: 8pt;background-color:red;">Sunday 21 May</p>
+           Portmore United vs Montego Bay United
+           <p style = "font-size: 8pt">Ferdi Neita Sports Complex</p><br>
+           FC Reno vs Rivoli United FC
+           <p style = "font-size: 8pt">Frome Sports Club</p><br>
+           <p style = "font-size: 8pt;background-color:red;">Monday 22 May</p>
+           Boys' Town FC vs Waterhouse FC
+           <p style = "font-size: 8pt">Collie Smith Drive Sporting Complex</p><br></center>
+           
+        </p>
+        <hr>
+        <div><center>
+            <h4 style="background-color:red;"> News and Updates</h4><br></center>
+            <p>
+                Arnett Gardens took a giant step towards reaching the Red Stripe Premier League final as goals from Fabian 'Parko Blacks' Reid and Vishinul Harris earned them a 2-1 victory over Humble Lions in the first leg of the semi-final.
+                <br>
+                <img src="http://i67.tinypic.com/vfh3cp.jpg" border="0" alt="Arnett Gds GK"></a>
+                <br>
+                <br>
+                 With three goals for Arnett Gardens when they got by Montego Bay United, and a goal against Humble Lions in the semis, Fabian Reid is set to provide FPL boost.
+                 <br>
+                 <img src="http://i65.tinypic.com/2evcnj4.jpg" border="0" alt="Fabian Reid" width="340" height="250"></a>
+            </p>
+        </div>
+         
+    </div>
+
+</div>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("May 20, 2017 15:37:25").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+    
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+}, 1000);
+</script>
+ 
+{% endblock %}	

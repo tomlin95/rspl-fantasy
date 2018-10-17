@@ -1,0 +1,151 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>R.S Fantasy Football</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+      body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+      .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+      .fa-anchor,.fa-coffee {font-size:200px}
+      
+     
+ 
+    </style>
+      
+    </style>
+  </head>
+  
+  <body  style =" color: white;  background-repeat: no-repeat;
+    background-attachment: fixed;background-image: url('https://www.walldevil.com/wallpapers/a80/wallpaper-background-black-widescreen-windows-dekstop-barcelona-messi-argentina-football-screensaver-lionel-graphics-creative-abstract-images-backgrounds.jpg');">
+	
+	<div >
+<nav class="navbar  navbar-toggleable-md  navbar-inverse bg-inverse" style ="border-bottom: solid thick red;">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse " id="navbarNav">
+    
+    <ul class="nav navbar-nav navbar-right">
+      
+       
+      <li class="nav-item active">
+        <a class="nav-link " href="https://fantasy-joditay.c9users.io/">Home <span class="sr-only">(current)</span></a>
+      </li>
+         <li class="nav-item">
+         {% if  request.session.user_name = None %}
+
+          {%else%}
+          <a id = "profile" class="nav-link" href="https://fantasy-joditay.c9users.io/user/home/?user_id={{ request.session.user_id}}">Profile</a>
+          {%endif%}
+      </li>
+        
+      <li class="nav-item">
+        <a class="nav-link" href="https://fantasy-joditay.c9users.io/about">About Us</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="https://fantasy-joditay.c9users.io/contact">Contact</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="https://fantasy-joditay.c9users.io/matches">How to Play</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="https://fantasy-joditay.c9users.io/matches">Matches</a>
+      </li>
+      </li>
+      
+       
+         <li class="nav-item">
+         {% if  request.session.user_name = None %}
+              
+          {%else%}
+            <a class="nav-link" href="#">Forum</a>
+          {%endif%}
+      </li>
+    
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Rankings
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="https://fantasy-joditay.c9users.io/league/table">League Table</a>
+           {% if  request.session.user_name = None %}
+
+           {%else%}
+          <a class="dropdown-item" href="https://fantasy-joditay.c9users.io/fantasy/ranks">Fantasy Premier Table</a>
+          {%endif%}
+        </div>
+      </li>
+             {% if  request.session.user_name = None %}
+              {%else%}
+      <li class="nav-item dropdown">
+        
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         More
+        </a>
+        
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            
+          <a class="dropdown-item" href="https://fantasy-joditay.c9users.io/league/table">Settings</a>
+        
+
+         
+          <a class="dropdown-item" href="https://fantasy-joditay.c9users.io/logout">Logout</a>
+          {%endif%}
+        </div>
+      </li>
+    </ul>
+   
+  </div>
+  
+  
+  
+    {% if  request.session.user_name = None %}
+
+    {%else%}
+   <p style="margin: 0 0  0 0; text-align: center; border:solid thin black; "> Welcome {{request.session.user_name}}</p>
+    {%endif%}
+
+</nav>
+
+<div style= "    background: url('https://f271.https.cdn.softlayer.net/80F271/dal05.objectstorage.softlayer.net/v1/AUTH_b4a3a2ca-226e-4f3c-aef2-b5275f5900cc/cdn/preview/astronomywebsitetemplate/images/bg-content.png') repeat-x center top;"
+> {% load bootstrap %}
+
+		{% block content %}
+		
+		{% endblock %}
+
+		<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32 row  " style = " margin: 0 auto; padding: 0 20px;text-align: center; max-width: 300px; height: 40px;">
+    
+  	<img src="http://i68.tinypic.com/eg8xlt.png" border="0" alt="Image and video hosting by TinyPic" width="50" height="50"></a>
+    <img src="http://i67.tinypic.com/29cl0kn.png" border="0" alt="Image and video hosting by TinyPic" width="50" height="50"></a>
+    <img src="http://i67.tinypic.com/2rqqb.png" border="0" alt="Image and video hosting by TinyPic" width="50" height="50"></a>
+    <img src="http://i64.tinypic.com/2vdp5xj.png" border="0" alt="Image and video hosting by TinyPic" width="50" height="50"></a>
+    <img src="http://i64.tinypic.com/2v3sd2r.png" border="0" alt="Image and video hosting by TinyPic" width="50" height="50"></a>
+ </div><br>
+ <p>Powered by <a href="http://www.jamaicaobserver.com/football/news/" target="_blank">Red Stripe Premier League</a></p>
+</footer>
+		
+	
+	</div>
+	
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="/js/vendor/modernizr.js"></script>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script> $(document).ready(function(){  $(document).foundation();}); </script>
+   </div>
+   
+  </body>
+</html>

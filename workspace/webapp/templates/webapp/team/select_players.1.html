@@ -1,0 +1,146 @@
+{%extends "webapp/header.html" %}
+ {% block content %}
+ 
+
+
+<style>
+     img {
+    width: 160%;
+    height: 500px;
+}
+
+.div1{
+   border: solid black 2px;
+    overflow: scroll;
+    height: 500px;
+    margin-left:auto; 
+    margin-right:0;
+     width: 40%;
+ 
+}
+.div2 {
+     border: solid black 2px;
+    
+    height: 500px;
+    margin-left:50px; 
+    margin-right:50px;
+     width: 25%;
+}
+.div3{
+   border: solid black 2px;
+    overflow: scroll;
+      
+    height: 400px;
+}
+</style>
+
+
+ {% load bootstrap %}
+{% if notvalid == 1 %}
+  <script>
+   alert('{{ message }}');
+ 
+  </script>
+{% endif %}
+<h4>Select Players</h4>
+<p> Now its time to select your players! Your Last 3 Players should be bench</p>
+
+
+<div class="row">
+ <div class="col-md-2 col-xs-4 col-md-offset-1" >
+   <img class="img-responsive" src="/static/webapp/IMG-20170313-WA0001.jpg" />
+   <p>{{formation}}</p>
+ </div>
+ 
+ 
+ <div  class="div1" >
+   <form action= "/team/addplayer/" method="post">
+    
+  {% csrf_token %}
+<input type= hidden name=user_players value={{user_players}}> 
+<input type= hidden name=formation value={{formation}}>
+<input type=hidden name =balance value = {{balance}}>
+<input type=hidden name =player_count value = {{player_count}}>
+
+ <table class="table" >
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Name</th>
+      <th>League Team</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for player in players %}
+       
+    <tr>
+      <th scope="row">{{ player.position }}</th>
+      <td>{{player.name}}</td>
+      <td>{{player.league_team}}</td>
+      <td>{{player.price}} </td>
+       
+
+      <td> <button type="submit" name="player_id" value = "{{player.id}}">Select</button></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</form>
+</div>
+
+<div class = "div2">
+
+<form action= "/team/removeplayer/" method="post">
+  {% csrf_token %}
+  <input type= hidden name=user_players value={{user_players}}> 
+<input type= hidden name=formation value={{formation}}>
+<input type=hidden name =balance value = {{balance}}>
+<input type=hidden name =player_count value = {{player_count}}>
+  <p>Balance: ${{balance}}</p>
+ <div class = "div3">
+  
+  
+ <table class="table ">
+  <thead>
+    
+      <tr>
+      <th>#</th>
+      <th>Postion</th>
+      <th>Name </th>
+    </tr>
+  </thead>
+  <tbody>
+   
+     {% for player in user_player_list %}
+       
+    <tr>
+      
+      <td></td>
+      <th scope="row">{{ player.position }}</th>
+      <td>{{player.name}} </td>
+      
+    
+      <td> <button type="submit" name="player_id" value = "{{player.id}}">Remove</button></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+ </form>
+ </div>
+ 
+ <form  action= "/team/submitplayers/" method="post">
+   {% csrf_token %}
+  <input type= hidden name=user_players value={{user_players}}> 
+<input type= hidden name=formation value={{formation}}>
+<input type=hidden name =balance value = {{balance}}>
+<input type=hidden name =player_count value = {{player_count}}>
+  <td> <button type="submit" name="submit" value = true >Submit</button></td>
+ </form>
+</div>
+
+
+ 
+</div>
+ {% endblock %}	
+  

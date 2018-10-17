@@ -1,0 +1,48 @@
+{% extends 'webapp/header.html' %}
+
+
+{% block content %}
+<center>
+<br>
+	<div style="border:solid thin white; max-width :500px">
+<h1> LOGIN </h1>
+    <div id="login">
+        <form class="form-horizontal" name="LoginForm" action="/login/" method="post">
+        {% csrf_token %}
+        {% if next %}
+            <input type="hidden" name="next" value="{{ next }}" />
+        {% endif %}
+		<br>
+		<br>
+	      {% if notvalid %}
+	          <p>Wrong Email or Password</p>
+	           {% endif %}
+	  
+        <div class=""container"" style="background-color:#990000">
+            <label class="control-label" for="username">USERNAME:<br></label>
+            <div class="controls">
+                <input type="text" id="username" name="username"  placeholder=" Enter Username">
+            </div>
+        </div>
+		<br>
+		<br>
+        <div class=""container"" style="background-color:#990000">
+            <label class="control-label" for="password">PASSWORD:</label>
+            <div class="controls">
+                <input type="password" name="password" id="password" placeholder="Enter Password">
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+			<br>
+			<br>
+                <button type="submit" class="btn">SUBMIT</button>
+            </div>
+        </div>
+        </form>
+        <br>
+        <br>
+		</center>
+		</div>
+    </div>
+{% endblock %}

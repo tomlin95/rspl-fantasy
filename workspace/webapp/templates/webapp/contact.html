@@ -1,0 +1,186 @@
+{%extends "webapp/header.html" %}
+ {% block content %}
+<html class="hasJs NoTouch HasDragDrop"><head>
+	<base href="https://f271.https.cdn.softlayer.net/80F271/dal05.objectstorage.softlayer.net/v1/AUTH_b4a3a2ca-226e-4f3c-aef2-b5275f5900cc/cdn/preview/astronomywebsitetemplate/">
+	<meta charset="UTF-8">
+	<title>Astronomy Website Template - Contact</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link rel="stylesheet" type="text/css" href="https://freewebsitetemplates.com/preview/shared/previews.css">
+
+	
+	<!-- Google Analytics -->
+	<script type="text/javascript" async="" defer="" src="//piwik.freewebsitetemplates.com/piwik.js"></script><script async="" src="//www.google-analytics.com/analytics.js"></script><script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	ga('create', 'UA-241068-1', 'auto');
+	ga('send', 'pageview');
+	
+	</script>
+	<!-- End Google Analytics -->
+	
+
+	<script src="https://freewebsitetemplates.com/js/jquery/jquery-1.11.0.min.js"></script>	
+		
+	<script src="https://freewebsitetemplates.com/js/xenforo/xenforo.js?_v=77c96446"></script>
+
+
+	<script>
+	$(document).ready(function() {
+		$("a[data-ga-event='click']").each(
+			function() {
+				if ($(this).data("gaCategory") && $(this).data("gaAction") && $(this).data("gaLabel")) {
+					//console.log($(this).data("gaCategory") + " - " + $(this).data("gaAction") + " - " + $(this).data("gaLabel"));
+					$(this).on('click', function() {
+						ga('send', 'event', $(this).data("gaCategory"), $(this).data("gaAction"), $(this).data("gaLabel"));
+						Piwik.getAsyncTracker().trackEvent($(this).data("gaCategory"), $(this).data("gaAction"), $(this).data("gaLabel"));
+					});
+				} else {
+					console.error("missing attributes for google analytics event tracking");
+				}
+			}
+		);
+	});
+	</script>
+
+</head>
+
+
+	<div id="contents">
+		<div id="contact" class="wrapper clearfix">
+			
+			<div class="main">
+				{%if message == 'sent'%}
+					{{message}}
+				{%endif%}
+				
+				<h1>Contact Us</h1>
+				<form action="https://fantasy-joditay.c9users.io/send/mail" method="post">
+					   {% csrf_token %}
+					<ul>
+						<li>
+							<label>Enter your full name here.</label>
+							<input type="text" name ="name" value="Full Name" onblur="javascript:if(this.value==''){this.value=this.defaultValue;}" onfocus="javascript:if(this.value==this.defaultValue){this.value='';}">
+						</li>
+						<li>
+							<label>Enter your email address here.</label>
+							<input type="text" name ="email" value="Email Address" onblur="javascript:if(this.value==''){this.value=this.defaultValue;}" onfocus="javascript:if(this.value==this.defaultValue){this.value='';}">
+						</li>
+						<li>
+							<label>Enter the Subject message here.</label>
+							<input type="text" name = "subject" value="Subject" onblur="javascript:if(this.value==''){this.value=this.defaultValue;}" onfocus="javascript:if(this.value==this.defaultValue){this.value='';}">
+						</li>
+						<li>
+							<label class="msg">Enter your Message here.</label>
+							<textarea name ="msg" onblur="javascript:if(this.value==''){this.value=this.defaultValue;}" onfocus="javascript:if(this.value==this.defaultValue){this.value='';}">Message</textarea>
+							<div class="checkbox">
+								<label for="terms">
+									<input type="checkbox" id="terms">
+									I agree to the Terms and Conditions</label>
+								<br>
+								<label for="subscribe">
+									<input type="checkbox" id="subscribe">
+									Subscribe to newsletter</label>
+							</div>
+							
+							<input type="submit" value="Send Now" class="btn3">
+						</li>
+					</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- end of templatePreview--><script>
+
+
+jQuery.extend(true, XenForo,
+{
+	visitor: { user_id: 0 },
+	serverTimeInfo:
+	{
+		now: 1495108529,
+		today: 1495083600,
+		todayDow: 4
+	},
+	_lightBoxUniversal: "0",
+	_enableOverlays: "1",
+	_animationSpeedMultiplier: "1",
+	_overlayConfig:
+	{
+		top: "10%",
+		speed: 200,
+		closeSpeed: 100,
+		mask:
+		{
+			color: "rgb(255, 255, 255)",
+			opacity: "0.6",
+			loadSpeed: 200,
+			closeSpeed: 100
+		}
+	},
+	_ignoredUsers: [],
+	_loadedScripts: [],
+	_cookieConfig: { path: "/", domain: "", prefix: "xf_"},
+	_csrfToken: "",
+	_csrfRefreshUrl: "login/csrf-token-refresh",
+	_jsVersion: "77c96446",
+	_noRtnProtect: false,
+	_noSocialLogin: false
+});
+jQuery.extend(XenForo.phrases,
+{
+	cancel: "Cancel",
+
+	a_moment_ago:    "A moment ago",
+	one_minute_ago:  "1 minute ago",
+	x_minutes_ago:   "%minutes% minutes ago",
+	today_at_x:      "Today at %time%",
+	yesterday_at_x:  "Yesterday at %time%",
+	day_x_at_time_y: "%day% at %time%",
+
+	day0: "Sunday",
+	day1: "Monday",
+	day2: "Tuesday",
+	day3: "Wednesday",
+	day4: "Thursday",
+	day5: "Friday",
+	day6: "Saturday",
+
+	_months: "January,February,March,April,May,June,July,August,September,October,November,December",
+	_daysShort: "Sun,Mon,Tue,Wed,Thu,Fri,Sat",
+
+	following_error_occurred: "The following error occurred",
+	server_did_not_respond_in_time_try_again: "The server did not respond in time. Please try again.",
+	logging_in: "Logging in",
+	click_image_show_full_size_version: "Click this image to show the full-size version.",
+	show_hidden_content_by_x: "Show hidden content by {names}"
+});
+
+// Facebook Javascript SDK
+XenForo.Facebook.appId = "";
+XenForo.Facebook.forceInit = false;
+
+
+</script>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//piwik.freewebsitetemplates.com/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 1]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+
+<!-- End Piwik Code -->
+
+
+</body></html>
+{% endblock %}

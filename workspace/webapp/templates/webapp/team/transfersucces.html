@@ -1,0 +1,27 @@
+{%extends "webapp/header.html" %}
+ {% block content %}
+ 
+
+
+<div>
+   
+    
+    <br>
+    <div style =" text-align: center; max-width: 500px;margin: 0  auto; border: solid white thin;">
+     <h5>The transfer was successful</h5>
+    <form action= "/team/player/transfer/" method="post">
+           <input type=hidden name =user_id value = "{{user_id}}">
+              {% csrf_token %}
+          <button type="submit" value = "{{user.id}}" class="btn btn-sucess"> Transfer More Players</button>
+     </form>
+     <br>
+      <form action= "/user/home" method="post">
+           <input type=hidden name =user_id value = "{{user_id}}">
+              {% csrf_token %}
+          <button type="submit" value = "{{user.id}}" class="btn btn-sucess"> Home</button>
+     </form>
+     </div>
+</div>
+</div>
+ {% endblock %}	
+  

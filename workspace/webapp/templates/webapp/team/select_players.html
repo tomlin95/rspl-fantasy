@@ -1,0 +1,203 @@
+{%extends "webapp/header.html" %}
+ {% block content %}
+ 
+
+ {% load bootstrap %}
+<style>
+     img {
+    width: 160%;
+    height: 450px;
+}
+
+.div1{
+   border: solid black 2px;
+    overflow: scroll;
+    height: 1200px;
+    margin-left:auto; 
+    margin-right:0;
+     width: 40%;
+ 
+}
+.div2 {
+     border: solid black 2px;
+    
+    height: 700px;
+    margin-left:20px; 
+    margin-right:50px;
+     width: 85%;
+}
+.div3{
+   border: solid black 2px;
+    overflow: scroll;
+      
+    height: 620px;
+}
+table {
+    counter-reset: rowNumber +1;
+}
+
+table tr:not(:first-child) {
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+    content: counter(rowNumber) ;
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+</style>
+
+
+ {% load bootstrap %}
+{% if notvalid == 1 %}
+  <script>
+   alert('{{ message }}');
+ 
+  </script>
+{% endif %}
+
+<h5 align="center">Create Team</h5>
+<h4 align="center">Step 3</h4>
+
+
+
+
+<div class="row" style = "max-width: 1350px; margin: 0 auto; text-align: center;">
+<div>
+ <div class="col-md-7 col-xs-6" >
+    {%if formation == 1 or team.formation == 1%}
+        
+        
+             <div style ="max-witdh: 500px"><img class="img-responsive"  width ="700" height="100" src="/static/webapp/webapp/formation1.jpeg" /></div>
+       {% else %}
+            {%if formation == 2 or team.formation == 2%}
+              <div style ="max-witdh: 500px"><img class="img-responsive"  width ="1000" height="100" src="/static/webapp/formation2.jpeg" /></div>
+             {% else %}
+               <div style ="max-witdh: 500px"><img class="img-responsive"  width ="700" height="400" src="/static/webapp/formation3.jpeg" /></div>
+                
+            
+              {% endif %}
+            
+       {% endif %}
+   <p style="text-align: center;">Formation  {{formation}}</p>
+ </div>
+ 
+ <div class = "div2">
+
+
+<form action= "/team/removeplayer/" method="post">
+  {% csrf_token %}
+  <input type= hidden name=user_players value={{user_players}}> 
+<input type= hidden name=formation value={{formation}}>
+<input type=hidden name =balance value = {{balance}}>
+<input type=hidden name =gk value = {{gk}}>
+<input type=hidden name =d value = {{d}}>
+<input type=hidden name =s value = {{s}}>
+
+<input type=hidden name =m value = {{m}}>
+<input type=hidden name =player_count value = {{player_count}}>
+  <p style="font-size: 24px;">Balance: ${{balance}}</p><p style ="text-align: left;">Your Players</p>
+ <div class = "div3">
+  
+  
+ <table class="table ">
+  <thead>
+    
+      <tr>
+      <th style="text-align: center;">#</th>
+      <th style="text-align: center;">Postion</th>
+      
+      <th style="text-align: center;">Name </th>
+      <th></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+   
+     {% for player in user_player_list %}
+       
+    <tr>
+      
+      <td></td>
+      <th scope="row">{{ player.position }}</th>
+      <td>{{player.name}} </td>
+      
+    
+      <td> <button type="submit" name="player_id" value = "{{player.id}}">Remove</button></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+ </form>
+ </div>
+  </div>
+
+</div>
+
+<div  class="div1" >
+    <p  style="text-align:left; font-size: 20px;">Select Players Below</p>
+    <p style="text-align:left">NOTE: The Last 3 Players selected will be put on bench</p>
+   <form action= "/team/addplayer/" method="post">
+    
+      {% csrf_token %}
+    <input type= hidden name=user_players value={{user_players}}> 
+    <input type= hidden name=formation value={{formation}}>
+    <input type=hidden name =balance value = {{balance}}>
+    <input type=hidden name =player_count value = {{player_count}}>
+    <input type=hidden name =gk value = {{gk}}>
+    <input type=hidden name =d value = {{d}}>
+    <input type=hidden name =s value = {{s}}>
+
+    <input type=hidden name =m value = {{m}}>
+     <table class="table" >
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Name</th>
+          <th>League Team</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+       {% for player in players %}
+           
+        <tr>
+          <th scope="row">{{ player.position }}</th>
+          <td>{{player.name}}</td>
+          <td>{{player.league_team}}</td>
+          <td>{{player.price}} </td>
+           
+          <td> <button type="submit" name="player_id" value = "{{player.id}}">Select</button></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </form>
+    </div>
+
+ 
+
+
+
+ 
+</div>
+<div>
+  <form  action= "/team/submitplayers/" method="post">
+   {% csrf_token %}
+   <div style="margin: 0 100px;">
+   <h3>Finally,</h3>
+
+  <input type= hidden name=user_players value={{user_players}}> 
+<input type= hidden name=formation value={{formation}}>
+<input type=hidden name =balance value = {{balance}}>
+  <input type=hidden name =player_count value = {{player_count}}>
+  <br><b style="font-size: 20px;">Enter Your Team Name:</b> <input type="text" class="form-control" name="teamname" style="width: 300px;"><br>
+ 
+  <td> <button  class="btn btn-danger" type="submit" name="submit" value = true >Submit</button></td>
+   </div>
+ </form>
+</div>
+
+ {% endblock %}	
+  
